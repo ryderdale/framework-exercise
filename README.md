@@ -1,5 +1,7 @@
 # Framework Exercise
 
+For the first part, you will be implementing a message board application on the front end only.
+
 This exercise will be considered successful when it:
 
 - Fulfills all of the user stories
@@ -89,3 +91,51 @@ Downvoting
 **Comments**
 
 ![Comments](img/frex-comments.gif)
+
+-----
+
+#  API Integration Assessment
+
+For the second part, your application will actually hit an API.
+
+In order to demonstrate that you've mastered the core concepts, you will be asked to build an app where:
+
+- App has routes with dynamic path segments, configured with clean urls (html5Mode)
+- Uses fetch/ajax and promises well
+- App loads data from the server on page load (index page)
+- Allows users to create records that appear on the screen without refreshing, and appear the same when refreshing (new records must get the id)
+- Allows users to update records that update on the screen without refreshing, and appear the same when refreshing
+- Allows users to remove records that disappear from the screen without refreshing, and don't reappear when refreshing
+- Deep links should load data the same way as clicking from the index page
+- Follows the appropriate styleguide for your framework
+
+## Features
+
+Take your existing message board and persist everything to the database, specifically:
+
+- Loading posts and comments from the server
+- Adding posts
+- Voting (up or down)
+- Adding comments
+
+Also add the additional feature that users can edit a post.  
+
+- When a user views the homepage
+- Then every post should have an "edit" link
+- And when they click the "edit" link
+- They should be on `/posts/:id/edit`
+- And they should see a post form identical to the one on the homepage
+  - Except the button should say "Update Post"
+  - All the same validation rules apply
+- And when they click "Update Post"
+- Then they should be redirected to the homepage
+
+**Designs**
+
+Edit link:
+
+![Edit link](img/frex-edit-link.png)
+
+Edit form:
+
+![Edit form](img/frex-edit-screen.png)
