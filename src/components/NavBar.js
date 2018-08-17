@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux'
+import {UpdateSite} from '../redux/actions'
 // import updateState from 'NewPostForm'
 
 class NavBar extends Component {
@@ -21,13 +24,27 @@ class NavBar extends Component {
                     </div>
                 </div>
                 {console.log()}
-              <button className="btn btn-primary newPost" onClick={()=>{console.log(this.props.parentState.state.showNewPostForm); this.props.parentState.setState({showNewPostForm: !this.props.parentState.state.showNewPostForm})}} >New Post</button>
+              <button className="btn btn-primary newPost" onClick={()=>this.props.UpdateSite({showNewPostForm: !this.props.globalState.showNewPostForm})}>New Post</button>
             </div>
         )
     }
 }
-// onClick={updateState(this)}
-export default NavBar;
+
+//allows me to access my gloablState from combined reducers
+function mapStateToProps(state) {
+    return   {
+      globalState: state.globalStateProp
+    };
+  }
+  
+  //allows me to update my global state from actions
+  function mapDispatchToProps (dispatch) {
+    return bindActionCreators( {
+      UpdateSite: UpdateSite
+    }, dispatch )
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(NavBar);  
 
 
 {/* <div className="dropdown-menu">

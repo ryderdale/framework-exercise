@@ -7,6 +7,9 @@ import logo from './logo.svg';
 import './App.css';
 import postsData from './postsData';
 import commentIcon from './comment-icon.png';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux'
+import {UpdateSite} from './redux/actions'
 
 class App extends Component {
 
@@ -25,15 +28,31 @@ class App extends Component {
     return (
       <div className="App">
         <Header logo={logo} />
-        <NavBar parentState={this}/>
-        <NewPostForm showNewPostForm={this.state.showNewPostForm}/>
+        <NavBar/>
+        <NewPostForm/>
         {postsData.map(post => <Post id="" key={post.id} commentIcon={commentIcon} img={post.imgURL} author={post.author} title={post.title} likesCount={post.likesCount} description={post.description} commentCount={post.commentCount} lastUpdatedDays = {post.lastUpdatedDays}/>)}
       </div>
     )
   }
 }
 
-export default App;
+//allows me to access my gloablState from combined reducers
+function mapStateToProps(state) {
+  return   {
+    globalState: state.globalStateProp
+  };
+}
+
+//allows me to update my global state from actions
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators( {
+    UpdateSite: UpdateSite
+  }, dispatch )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);  
+
+
 
 // toggle={() => this.toggleShowPostForm}
 // showNewPostForm = {() => this.state.showNewPostForm} 
