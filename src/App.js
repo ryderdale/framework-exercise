@@ -5,7 +5,7 @@ import NewPostForm from './components/NewPostForm';
 import Post from './components/Post';
 import logo from './logo.svg';
 import './App.css';
-import postsData from './postsData';
+// import postsData from './postsData';
 import commentIcon from './comment-icon.png';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
@@ -30,7 +30,7 @@ class App extends Component {
         <Header logo={logo} />
         <NavBar/>
         <NewPostForm/>
-        {postsData.map(post => <Post id="" key={post.id} commentIcon={commentIcon} img={post.imgURL} author={post.author} title={post.title} likesCount={post.likesCount} description={post.description} commentCount={post.commentCount} lastUpdatedDays = {post.lastUpdatedDays}/>)}
+        {this.props.globalState.postsList.map(post => <Post id="" key={post.id} commentIcon={commentIcon} img={post.imgURL} author={post.author} title={post.title} likesCount={post.likesCount} description={post.description} commentCount={post.commentCount} lastUpdatedDays = {post.lastUpdatedDays}/>)}
       </div>
     )
   }
